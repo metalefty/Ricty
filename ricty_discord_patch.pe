@@ -1,0 +1,368 @@
+#!/usr/local/bin/fontforge -script
+
+#
+# Ricty Discord Patch
+#
+
+#
+# Copyright (c) 2011-2014, Yasunori Yusa <yusa at save.sys.t.u-tokyo.ac.jp>
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+#
+# This script is to generate ``Ricty Discord'' from Ricty. Owing to SIL
+# Open Font License Version 1.1 section 5, it is PROHIBITED to distribute
+# the generated font.
+#
+# Usage:
+#     % fontforge -script ricty_discord_patch.pe Ricty-Regular.ttf Ricty-Bold.ttf
+#
+
+if ($argc == 1)
+    Print("Usage: ricty_discord_patch.pe [options] fontfamily-fontstyle.ttf ...")
+    Print("")
+    Print("Options:")
+    Print("  -space                    Enable visible hankaku space")
+    Print("  -quotedbl                 Disable magnified \"")
+    Print("  -quotesingle or -quote    Disable magnified \'")
+    Print("  -asterisk                 Disable * moved downward a little")
+    Print("  -plus                     Disable + moved downward a little")
+    Print("  -comma                    Disable magnified ,")
+    Print("  -hyphen                   Disable - moved downward a little")
+    Print("  -period                   Disable magnified .")
+    Print("  -0 or -zero               Disable dotted 0")
+    Print("  -7 or -seven              Disable 7 with cross-bar")
+    Print("  -colon                    Disable magnified :")
+    Print("  -semicolon                Disable magnified ;")
+    Print("  -less-greater or -angles  Disable < and > moved downward a little")
+    Print("  -equal                    Disable = moved downward a little")
+    Print("  -D                        Disable D of Eth (D with cross-bar)")
+    Print("  -Z                        Disable Z with cross-bar")
+    Print("  -asciicircum or -circum   Disable magnified ^")
+    Print("  -grave                    Disable magnified `")
+    Print("  -l                        Disable l of cutting off left-bottom serif")
+    Print("  -r                        Disable r of serif (Inconsolata's unused glyph)")
+    Print("  -z                        Disable z with cross-bar")
+    Print("  -bar                      Disable broken | (Inconsolata's glyph)")
+    Print("  -asciitilde or -tilde     Disable ~ moved upward")
+    Quit()
+endif
+
+flag_space="false"
+flag_quotedbl="true"
+flag_quotesingle="true"
+flag_asterisk="true"
+flag_plus="true"
+flag_comma="true"
+flag_hyphen="true"
+flag_period="true"
+flag_0="true"
+flag_7="true"
+flag_colon="true"
+flag_semicolon="true"
+flag_less_greater="true"
+flag_equal="true"
+flag_D="true"
+flag_Z="true"
+flag_asciicircum="true"
+flag_grave="true"
+flag_l="true"
+flag_r="true"
+flag_z="true"
+flag_bar="true"
+flag_asciitilde="true"
+
+i = 1
+while (i < $argc)
+if (Strsub($argv[i], 0, 1) == "-")
+    if ($argv[i] == "-space" || $argv[i] == "--space")
+        Print("Option: Enable visible hankaku space")
+        flag_space="true"
+    elseif ($argv[i] == "-quotedbl" || $argv[i] == "--quotedbl")
+        Print("Option: Disable magnified \"")
+        flag_quotedbl="false"
+    elseif ($argv[i] == "-quotesingle" || $argv[i] == "--quotesingle" || $argv[i] == "-quote" || $argv[i] == "--quote")
+        Print("Option: Disable magnified \'")
+        flag_quotesingle="false"
+    elseif ($argv[i] == "-asterisk" || $argv[i] == "--asterisk")
+        Print("Option: Disable * moved downward a little")
+        flag_asterisk="false"
+    elseif ($argv[i] == "-plus" || $argv[i] == "--plus")
+        Print("Option: Disable + moved downward a little")
+        flag_plus="false"
+    elseif ($argv[i] == "-comma" || $argv[i] == "--comma")
+        Print("Option: Disable magnified ,")
+        flag_comma="false"
+    elseif ($argv[i] == "-hyphen" || $argv[i] == "--hyphen")
+        Print("Option: Disable - moved downward a little")
+        flag_hyphen="false"
+    elseif ($argv[i] == "-period" || $argv[i] == "--period")
+        Print("Option: Disable magnified .")
+        flag_period="false"
+    elseif ($argv[i] == "-0" || $argv[i] == "-zero" || $argv[i] == "--zero")
+        Print("Option: Disable dotted 0")
+        flag_0="false"
+    elseif ($argv[i] == "-7" || $argv[i] == "-seven" || $argv[i] == "--seven")
+        Print("Option: Disable 7 with cross-bar")
+        flag_7="false"
+    elseif ($argv[i] == "-colon" || $argv[i] == "--colon")
+        Print("Option: Disable magnified :")
+        flag_colon="false"
+    elseif ($argv[i] == "-semicolon" || $argv[i] == "--semicolon")
+        Print("Option: Disable magnified ;")
+        flag_semicolon="false"
+    elseif ($argv[i] == "-less-greater" || $argv[i] == "--less-greater" || $argv[i] == "-angles" || $argv[i] == "--angles")
+        Print("Option: Disable < and > moved downward a little")
+        flag_less_greater="false"
+    elseif ($argv[i] == "-equal" || $argv[i] == "--equal")
+        Print("Option: Disable = moved downward a little")
+        flag_equal="false"
+    elseif ($argv[i] == "-D")
+        Print("Option: Disable D of Eth (D with cross-bar)")
+        flag_D="false"
+    elseif ($argv[i] == "-Z")
+        Print("Option: Disable Z with cross-bar")
+        flag_Z="false"
+    elseif ($argv[i] == "-asciicircum" || $argv[i] == "--asciicircum" || $argv[i] == "-circum" || $argv[i] == "--circum")
+        Print("Option: Disable magnified ^")
+        flag_asciicircum="false"
+    elseif ($argv[i] == "-grave" || $argv[i] == "--grave")
+        Print("Option: Disable magnified `")
+        flag_grave="false"
+    elseif ($argv[i] == "-l")
+        Print("Option: Disable l of cutting off left-bottom serif")
+        flag_l="false"
+    elseif ($argv[i] == "-r")
+        Print("Option: Disable r of serif (Inconsolata's unused glyph)")
+        flag_r="false"
+    elseif ($argv[i] == "-z")
+        Print("Option: Disable z with cross-bar")
+        flag_z="false"
+    elseif ($argv[i] == "-bar" || $argv[i] == "--bar")
+        Print("Option: Disable broken | (Inconsolata's glyph)")
+        flag_bar="false"
+    elseif ($argv[i] == "-asciitilde" || $argv[i] == "--asciitilde" || $argv[i] == "-tilde" || $argv[i] == "--tilde")
+        Print("Option: Disable ~ moved upward")
+        flag_asciitilde="false"
+    else
+        Print("Unknown Option: " + $argv[i])
+        Quit()
+    endif
+else
+
+########################################
+# Set parameters
+########################################
+
+input = $argv[i]:t:r
+
+hyphen_idx = Strrstr(input, '-')
+if ($argv[i]:e != "ttf" || hyphen_idx == -1)
+    Print("Invalid Argument: " + $argv[i])
+    Quit()
+endif
+inputfamily = Strsub(input, 0, hyphen_idx)
+inputstyle  = Strsub(input, hyphen_idx+1)
+addfamily   = "Discord"
+
+Print("Generate " + inputfamily + addfamily + "-" + inputstyle + ".ttf.")
+
+########################################
+# Open file and set configuration
+########################################
+
+Open($argv[i])
+
+Reencode("unicode")
+
+SetFontNames(inputfamily + addfamily + "-" + inputstyle, \
+             $familyname + " " + addfamily, \
+             $familyname + " " + addfamily + " " + inputstyle, \
+             inputstyle)
+SetTTFName(0x409, 3, "FontForge 2.0 : " + $fullname + " : " + Strftime("%d-%m-%Y", 0))
+
+########################################
+# Edit some glyphs
+########################################
+
+# space -> visible space
+if (flag_space == "true")
+    Select(0u2423); Copy() # open box
+    Select(0u0020); Paste()
+endif
+
+# " -> magnified "
+if (flag_quotedbl == "true")
+    Select(0u0022); Scale(115, 115, 250, 600); SetWidth(500)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# ' -> magnified '
+if (flag_quotesingle == "true")
+    Select(0u0027); Scale(115, 115, 250, 600); SetWidth(500)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# * -> * moved downward a little
+if (flag_asterisk == "true")
+    Select(0u002a); Move(0, -80)
+endif
+
+# + -> + moved downward a little
+if (flag_plus == "true")
+    Select(0u002b); Move(0, -80)
+endif
+
+# , -> magnified ,
+if (flag_comma == "true")
+    Select(0u002c); Scale(115, 115, 250, 0); SetWidth(500)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# - -> - moved downward a little
+if (flag_hyphen == "true")
+    Select(0u002d); Move(0, -80)
+endif
+
+# . -> magnified .
+if (flag_period == "true")
+    Select(0u002e); Scale(115, 115, 250, 0); SetWidth(500)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# 0 -> dotted 0
+if (flag_0 == "true")
+    Select(0u00b7); Copy() # middle dot
+    Select(0u0030); Paste(); CenterInWidth()
+    Select(65610);  Copy() # zero (Inconsolata's unused glyph)
+    Select(0u0030); PasteInto()
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# 7 -> 7 with cross-bar
+if (flag_7 == "true")
+    Select(0u00af); Copy() # macron
+    Select(0u0037); PasteWithOffset(20, -263)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# : -> magnified :
+if (flag_colon == "true")
+    Select(0u003a); Scale(115, 115, 250, 0); SetWidth(500)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# ; -> magnified ;
+if (flag_semicolon == "true")
+    Select(0u003b); Scale(115, 115, 250, 0); SetWidth(500)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# < and > -> < and > moved downward a little
+if (flag_less_greater == "true")
+    Select(0u003c); Move(0, -80)
+    Select(0u003e); Move(0, -80)
+endif
+
+# = -> = moved downward a little
+if (flag_equal == "true")
+    Select(0u003d); Move(0, -80)
+endif
+
+# D -> D of Eth (D with cross-bar)
+if (flag_D == "true")
+    Select(0u0110); Copy()
+    Select(0u0044); Paste()
+endif
+
+# Z -> Z with cross-bar
+if (flag_Z == "true")
+    Select(0u00af); Copy()  # macron
+    Select(65611);  Paste() # Temporary glyph
+    Transform(100, -65, 0, 100, 0, -12000); SetWidth(500)
+    Copy()
+    Select(0u005a); PasteInto()
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+    Select(65611);  Clear() # Temporary glyph
+endif
+
+# ^ -> magnified ^
+if (flag_asciicircum == "true")
+    Select(0u005e); Scale(115, 115, 250, 600); SetWidth(500)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# ` -> magnified `
+if (flag_grave == "true")
+    Select(0u0060); Scale(115, 115, 250, 600); SetWidth(500)
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+endif
+
+# l -> l of cutting off left-bottom serif
+if (flag_l == "true")
+    Select(0u006c); Copy()
+    Rotate(180); Move(1, 0); SetWidth(500)
+    PasteInto(); OverlapIntersect()
+endif
+
+# r -> r of serif (Inconsolata's unused glyph)
+if (flag_r == "true")
+    Select(65608);  Copy()
+    Select(0u0072); Paste()
+endif
+
+# z -> z with cross-bar
+if (flag_z == "true")
+    Select(0u00af); Copy()  # macron
+    Select(65611);  Paste() # Temporary glyph
+    Transform(75, -52, 0, 100, 5500, -23500); SetWidth(500)
+    Copy()
+    Select(0u007a); PasteInto()
+    RoundToInt(); RemoveOverlap(); RoundToInt()
+    Select(65611);  Clear() # Temporary glyph
+endif
+
+# | -> broken | (Inconsolata's glyph)
+if (flag_bar == "true")
+    Select(0u00a6); Copy()
+    Select(0u007c); Paste()
+endif
+
+# ~ -> ~ moved upward
+if (flag_asciitilde == "true")
+    Select(0u007e); Move(0, 120)
+endif
+
+########################################
+# Generate
+########################################
+
+Generate(inputfamily + addfamily + "-" + inputstyle + ".ttf", "", 0x84)
+Close()
+
+endif
+i += 1
+endloop
+
+Quit()

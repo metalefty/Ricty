@@ -1,0 +1,28 @@
+#!/usr/local/bin/fontforge -script
+
+#
+# Glyph Replacer
+#
+# Copyright (c) 2014, Yasunori Yusa <yusa at save.sys.t.u-tokyo.ac.jp>
+# All rights reserved.
+#
+# This script is to replace a glyph of Ricty.
+# You can replace your favorite specific glyph.
+#
+# Usage:
+usage = "Usage: replace_glyph.pe filename.ttf glyph_to_be_replaced glyph_to_be_copied"
+#
+
+if ($argc != 4)
+    Print(usage)
+    Quit()
+endif
+
+Open($1)
+Reencode("unicode")
+Select($3); Copy()
+Select($2); Paste()
+Generate($1, "", 0x84)
+Print("Generated " + $1 + ".")
+Close()
+Quit()

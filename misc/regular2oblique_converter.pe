@@ -1,0 +1,74 @@
+#!/usr/local/bin/fontforge -script
+
+#
+# Regular to Oblique Converter
+#
+# Copyright (c) 2014, Yasunori Yusa <yusa at save.sys.t.u-tokyo.ac.jp>
+# All rights reserved.
+#
+# This script is to convert a regular font to an oblique one.
+# Oblique and bold oblique fonts will be available on Emacs.
+#
+# Usage:
+usage = "Usage: fontforge -script regular2oblique_converter.pe fontfamily-fontstyle.ttf ..."
+#
+
+if ($argc == 1)
+    Print(usage)
+    Quit()
+endif
+
+i = 1
+while (i < $argc)
+
+input_ttf = $argv[i]
+input     = input_ttf:t:r
+if (input_ttf:t:e != "ttf")
+    Print(usage)
+    Quit()
+endif
+
+hypen_index = Strrstr(input, '-')
+if (hypen_index == -1)
+    Print(usage)
+    Quit()
+endif
+input_family = Strsub(input, 0, hypen_index)
+input_style  = Strsub(input, hypen_index + 1)
+
+output_family = input_family
+
+if (input_style == "Regular" || input_style == "Roman")
+    output_style = "Oblique"
+    style        = "Oblique"
+else
+    output_style = input_style + "Oblique"
+    style        = input_style + " Oblique"
+endif
+
+Open(input_ttf)
+
+Reencode("unicode")
+
+SetFontNames(output_family + "-" + output_style, \
+             $familyname, \
+             $familyname + " " + style, \
+             style)
+SetTTFName(0x409, 2, style)
+SetTTFName(0x409, 3, "FontForge 2.0 : " + $fullname + " : " + Strftime("%d-%m-%Y", 0))
+
+SelectWorthOutputting()
+
+Transform(100, 0, 20, 100, 0, 0)
+
+RoundToInt()
+RemoveOverlap()
+RoundToInt()
+
+Generate(output_family + "-" + output_style + ".ttf", "", 0x84)
+Close()
+
+i += 1
+endloop
+
+Quit()
