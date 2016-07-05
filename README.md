@@ -242,4 +242,4 @@ GVim (Mac OS X/Windows)
 
 # 作者連絡先
 
-[遊佐泰紀 (Yasunori Yusa)](http://save.sys.t.u-tokyo.ac.jp/~yusa/index.html.ja)
+~~[遊佐泰紀 (Yasunori Yusa)](http://save.sys.t.u-tokyo.ac.jp/~yusa/index.html.ja)~~
