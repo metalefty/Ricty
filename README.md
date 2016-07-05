@@ -1,6 +1,6 @@
 # おことわり
 
-本リポジトリは [Ricty](http://www.rs.tus.ac.jp/yyusa/ricty.html) をライセンス(2 clause BSD license)に従って再頒布するものです。本リポジトリに関するいかなる責任もライセンスに従います。
+本リポジトリは [Ricty](http://www.rs.tus.ac.jp/yyusa/ricty.html) をライセンス(2 clause BSD license)に従って適切に fork し再頒布するものです。本リポジトリに関するいかなる責任もライセンスに従います。
 
 # プログラミング用フォント Ricty
 
