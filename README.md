@@ -1,3 +1,7 @@
+# おことわり
+
+本リポジトリは [Ricty](http://www.rs.tus.ac.jp/yyusa/ricty.html) をライセンス(2 clause BSD license)に従って再頒布するものです。本リポジトリに関するいかなる責任もライセンスに従います。
+
 # プログラミング用フォント Ricty
 
 [![Ricty screenshot of GNU Emacs on Ubuntu](https://raw.githubusercontent.com/metalefty/Ricty/master/screenshots/ricty_screenshot_emacs_thumbnail.png)](https://raw.githubusercontent.com/metalefty/Ricty/master/screenshots/ricty_screenshot_emacs.png)
