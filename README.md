@@ -1,7 +1,7 @@
 # プログラミング用フォント Ricty
 
-[![Ricty screenshot of GNU Emacs on Ubuntu](https://raw.githubusercontent.com/yascentur/Ricty/master/screenshots/ricty_screenshot_emacs_thumbnail.png)](https://raw.githubusercontent.com/yascentur/Ricty/master/screenshots/ricty_screenshot_emacs.png)
-[![Ricty screenshot of GVim on Ubuntu](https://raw.githubusercontent.com/yascentur/Ricty/master/screenshots/ricty_screenshot_gvim_thumbnail.png)](https://raw.githubusercontent.com/yascentur/Ricty/master/screenshots/ricty_screenshot_gvim.png)
+[![Ricty screenshot of GNU Emacs on Ubuntu](https://raw.githubusercontent.com/metalefty/Ricty/master/screenshots/ricty_screenshot_emacs_thumbnail.png)](https://raw.githubusercontent.com/metalefty/Ricty/master/screenshots/ricty_screenshot_emacs.png)
+[![Ricty screenshot of GVim on Ubuntu](https://raw.githubusercontent.com/metalefty/Ricty/master/screenshots/ricty_screenshot_gvim_thumbnail.png)](https://raw.githubusercontent.com/metalefty/Ricty/master/screenshots/ricty_screenshot_gvim.png)
 
 Ricty (リクティ) は Linux 環境での研究・開発に適したフリーなプログラミング用 TrueType フォントです。
 Emacs や Vim を用いた C、C++、FORTRAN、Python、Perl、Ruby、AWK、sed、シェルスクリプト、LaTeX などのコーディングにおける使用を想定しています。
